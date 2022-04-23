@@ -1,0 +1,63 @@
+.generator{
+    max-width: 380px;
+    background-color: rgba(235, 242, 243, 0.447);
+    margin: 120px auto;
+    box-shadow: 0px 15px 13px 8px rgba(34, 60, 80, 0.2);
+    border-radius: 5px;
+    padding-bottom: 35px;
+
+}
+.title{
+    padding-top: 20px;
+    text-align: center;
+    color: #fff;
+
+}
+.wrapper{
+    max-width: 320px;
+    margin: 0 auto;
+}
+.btns{
+    display: flex;
+    justify-content: space-around;
+    margin-top: 30px;
+}
+.numOptions{
+    margin: 0;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    color: rgb(227, 245, 254);
+    font-size: 18px;
+}
+.numOptions input {
+    width: 35px;
+    height: 15px;
+    outline: none;
+    border: 1px solid #fff;
+    border-radius: 3px;
+}
+
+@media (max-width:420px){
+    .generator{
+        max-width: 320px;
+    }
+    .wrapper{
+        max-width: 270px;
+    }
+}
+
+@media (max-width: 330px){
+    .generator{
+        margin-top: 40px;
+        max-width: 270px;
+
+    }
+    .wrapper{
+        max-width: 200px;
+    }
+    .title{
+        font-size: 23px;
+    }
+}

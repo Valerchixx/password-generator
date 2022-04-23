@@ -1,0 +1,45 @@
+.wrap{
+    display: flex;
+    font-family: 'Inter', sans-serif;
+    font-size: 14px;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    padding: 7px 0;
+
+}
+.customCheckbox{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+.hiddenCheckbox{
+    opacity: 0;
+    position: absolute;
+}
+.customCheckbox .mark{
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 70%;
+}
+.customCheckbox .checkbox{
+  background-color: rgb(255, 255, 255);
+  width: 16px;
+  height: 16px;
+  position: relative;
+  border: 1px solid #CED1D3;
+  border-radius: 3px;
+  margin-right: 10px;
+}
+.hiddenCheckbox:checked + .checkbox .mark{
+    display: block;
+}
+  .hiddenCheckbox:checked + .checkbox {
+    background-color: #0a87da;
+}
+.text{
+    color: rgb(227, 245, 254);
+    font-size: 18px;
+}
