@@ -1,8 +1,9 @@
-/* eslint-disable no-unused-vars */
 
 /* eslint-disable no-mixed-spaces-and-tabs */
 
-import React, {useState, useRef} from 'react';
+import React, {useState} from 'react';
+import {ToastContainer, toast} from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import styles from '../css/generator.module.css';
 import InputResult from './InputResult';
 import {options} from '../utils/options';
@@ -18,6 +19,18 @@ function Generator() {
 			lowercase: genereateLowercase,
 			numbers: generateNum,
 			symbols: getenerateSymbols});
+	const messages = ['please, chose options', 'copyied!'];
+
+	const notifyError = () => toast.warning(messages[0], {
+		autoClose: 2000,
+		closeOnClick: true,
+		pauseOnHover: true,
+	});
+	const notifyCopy = () => toast.success(messages[1], {
+		autoClose: 500,
+		closeOnClick: true,
+		pauseOnHover: true,
+	});
 	function generateUppercase() {
 		const min = 65;
 		const max = 90;
@@ -57,6 +70,7 @@ function Generator() {
 
 	function copyPass() {
 		navigator.clipboard.writeText(pass);
+		notifyCopy();
 	}
 
 	const setPassLength = ({target}) => {
@@ -74,6 +88,10 @@ function Generator() {
 			}
 		}
 
+		if (arrayOpt.length === 0) {
+			notifyError();
+		}
+
 		for (let i = 0; i < length; i++) {
 			const randomNum = arrayOpt.length > 0 ? arrayOpt[Math.floor(Math.random() * arrayOpt.length)] : setPass('chose options');
 		    password += Object.values(objOptions)[randomNum]();
@@ -88,6 +106,7 @@ function Generator() {
 		<div className={styles.generator}>
 			<h1 className={styles.title}>Password generator</h1>
 			<div className={styles.wrapper}>
+				<ToastContainer />
 				<InputResult value={pass} />
 				<div className={styles.numOptions}>
 					<p>pass length</p>
