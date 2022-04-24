@@ -1,6 +1,5 @@
 
 /* eslint-disable no-mixed-spaces-and-tabs */
-
 import React, {useState} from 'react';
 import {ToastContainer, toast} from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -88,14 +87,16 @@ function Generator() {
 			}
 		}
 
-		if (arrayOpt.length === 0) {
+		if (arrayOpt.length === 0 || length === 0) {
 			notifyError();
 		}
 
 		for (let i = 0; i < length; i++) {
-			const randomNum = arrayOpt.length > 0 ? arrayOpt[Math.floor(Math.random() * arrayOpt.length)] : setPass('chose options');
-		    password += Object.values(objOptions)[randomNum]();
-			console.log(randomNum);
+			if (arrayOpt.length > 0) {
+				const randomNum = arrayOpt[Math.floor(Math.random() * arrayOpt.length)];
+		    	password += Object.keys(objOptions).map(key => objOptions[key])[randomNum]();
+				console.log(randomNum);
+			}
 		}
 
 		setPass(password);
@@ -110,7 +111,7 @@ function Generator() {
 				<InputResult value={pass} />
 				<div className={styles.numOptions}>
 					<p>pass length</p>
-					<input type="number" onChange={setPassLength} value={length} defaultValue="4" min="0" step="1" max="12" />
+					<input type="number" onChange={setPassLength} value={length} min="0" step="1" max="12" />
 				</div>
 				<div className={styles.optionsWrap}>
 					{options.map((option, i) => <CheckOption handle={handleChange} index={i} key={i} text={option} />)}
