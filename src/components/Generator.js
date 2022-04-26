@@ -1,6 +1,7 @@
 
 /* eslint-disable no-mixed-spaces-and-tabs */
 import React, {useState} from 'react';
+import PropTypes from 'prop-types';
 import {ToastContainer, toast} from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import styles from '../css/generator.module.css';
@@ -9,7 +10,7 @@ import {options} from '../utils/options';
 import Button from './Button';
 import CheckOption from './CheckOption';
 
-function Generator() {
+function Generator({theme}) {
 	const [checkOptions, setCheckOptions] = useState(new Array(options.length).fill(false));
 	const [pass, setPass] = useState('');
 	const [length, setLength] = useState(4);
@@ -108,22 +109,26 @@ function Generator() {
 			<h1 className={styles.title}>Password generator</h1>
 			<div className={styles.wrapper}>
 				<ToastContainer />
-				<InputResult value={pass} />
+				<InputResult value={pass} theme={theme} />
 				<div className={styles.numOptions}>
 					<p>pass length</p>
 					<input type="number" onChange={setPassLength} value={length} min="0" step="1" max="12" />
 				</div>
 				<div className={styles.optionsWrap}>
-					{options.map((option, i) => <CheckOption handle={handleChange} index={i} key={i} text={option} />)}
+					{options.map((option, i) => <CheckOption theme={theme} handle={handleChange} index={i} key={i} text={option} />)}
 				</div>
 				<div className={styles.btns}>
-					<Button text="generate" handle={generatePassword} />
-					<Button text="copy" handle={copyPass} />
+					<Button theme={theme} text="generate" handle={generatePassword} />
+					<Button theme={theme} text="copy" handle={copyPass} />
 				</div>
 			</div>
 
 		</div>
 	);
 }
+
+Generator.propTypes = {
+	theme: PropTypes.bool.isRequired,
+};
 
 export default Generator;

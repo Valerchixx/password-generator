@@ -3,3 +3,12 @@ body{
   overflow: hidden;
   font-family: 'Lato', sans-serif;
 }
+body.violet{
+  background: linear-gradient(90deg, rgba(79,41,195,1) 11%, rgba(183,0,255,1) 100%);
+}
+.switch{
+  display: flex;
+  justify-content: flex-end;
+  margin-right: 40px;
+  margin-top: 30px;
+}

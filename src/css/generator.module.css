@@ -39,6 +39,8 @@
     border-radius: 3px;
 }
 
+
+
 @media (max-width:420px){
     .generator{
         max-width: 320px;

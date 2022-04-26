@@ -39,6 +39,9 @@
   .hiddenCheckbox:checked + .checkbox {
     background-color: #0a87da;
 }
+.hiddenCheckbox.violet:checked + .checkbox {
+  background-color: #892aee;
+}
 .text{
     color: rgb(227, 245, 254);
     font-size: 18px;

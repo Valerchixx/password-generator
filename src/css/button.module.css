@@ -31,6 +31,13 @@
     width: 105%;
    }
 
-   .btn:hover {
+   .btn:hover, .btn.violet:hover {
     color: rgb(246, 244, 244);
    }
+    .btn.violet{
+    border: 2px solid rgb(131, 49, 239);
+    color: rgb(131, 49, 239) ;
+    }
+    .btn.violet::before{
+    background: rgb(131, 49, 239);
+    }
