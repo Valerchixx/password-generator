@@ -1,0 +1,33 @@
+.burger{
+    padding-top: 10px;
+    position: absolute;
+    right: 20px;
+    opacity: .75;
+
+}
+.burgerItem{
+    width: 30px;
+    height: 3px;
+    display: block;
+    position: relative;
+    color: transparent;
+    background-color: #fff;
+}
+.burger:hover{
+    opacity: 1;
+}
+.burgerItem::before, .burgerItem::after{
+    content: "";
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    left: 0;
+    z-index: 1;
+    background-color: #fff;
+}
+.burgerItem::before{
+    top: -8px;
+}
+.burgerItem::after{
+    bottom: -8px;
+}

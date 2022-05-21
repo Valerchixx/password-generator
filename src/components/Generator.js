@@ -1,18 +1,20 @@
 
 /* eslint-disable no-mixed-spaces-and-tabs */
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import PropTypes from 'prop-types';
 import {ToastContainer, toast} from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import styles from '../css/generator.module.css';
 import InputResult from './InputResult';
 import {options} from '../utils/options';
+import {getPasswords} from '../utils/passArray';
 import Button from './Button';
 import CheckOption from './CheckOption';
 
 function Generator({theme}) {
 	const [checkOptions, setCheckOptions] = useState(new Array(options.length).fill(false));
 	const [pass, setPass] = useState('');
+	const [passStorage, setPassStorage] = useState(getPasswords('passArr'));
 	const [length, setLength] = useState(4);
 	const [objOptions] = useState(
 		{uppercase: generateUppercase,
@@ -20,6 +22,10 @@ function Generator({theme}) {
 			numbers: generateNum,
 			symbols: getenerateSymbols});
 	const messages = ['please, chose options', 'copyied!'];
+
+	useEffect(() => {
+		sessionStorage.setItem('passArr', JSON.stringify(passStorage));
+	}, [passStorage]);
 
 	const notifyError = () => toast.warning(messages[0], {
 		autoClose: 2000,
@@ -70,6 +76,10 @@ function Generator({theme}) {
 
 	function copyPass() {
 		navigator.clipboard.writeText(pass);
+		if (!passStorage.includes(pass)) {
+			setPassStorage(prevState => [...prevState, pass]);
+		}
+
 		notifyCopy();
 	}
 
@@ -101,7 +111,6 @@ function Generator({theme}) {
 		}
 
 		setPass(password);
-		console.log(pass);
 	}
 
 	return (

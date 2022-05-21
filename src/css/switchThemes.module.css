@@ -3,6 +3,9 @@
   display: inline-block;
   width: 60px;
   height: 34px;
+  position: absolute;
+  top: 70px;
+  right: 15px;
 }
 .switch input {
   opacity: 0;
@@ -41,4 +44,11 @@ input:checked + .slider{
 }
 input:checked +  .slider:before{
   transform: translateX(26px);
+}
+
+@media (max-width: 400px){
+  .switch{
+    top: 25px;
+    right: 100px;
+  }
 }

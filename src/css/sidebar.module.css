@@ -1,0 +1,54 @@
+.sidebar{
+    width: 250px;
+    z-index: 100500;
+    height: 100vh;
+    top: 0;
+    bottom: 0;
+    position: fixed;
+    background-color: rgb(64, 134, 255);
+    left: 0;
+    transform: translateX((0));
+    transition: 0.2s ease-in;
+    overflow-y: auto;
+}
+
+.sidebar.close{
+    transform: translateX(-100%);
+    transition: 0.2s ease-in;
+}
+.sidebar.violet{
+    background-color: rgb(156, 86, 248);
+}
+.side{
+    background-color: rgb(64, 134, 255);
+    width: 100%;
+    height: 100%;
+
+}
+.side.violet{
+    background-color: rgb(156, 86, 248);
+}
+.password{
+    color: #fff;
+    font-size: 28px;
+    font-family: Arial, Helvetica, sans-serif;
+    margin-left: 25px;
+    margin-right: 25px;
+    padding-top: 12px;
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+
+}
+.btnCopy{
+    margin-left: 10px;
+
+}
+.mark{
+    width: 28px;
+    margin-left: 10px;
+}
+.bin{
+    width: 26px;
+    margin-left: 15px;
+}
