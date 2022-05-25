@@ -1,7 +1,9 @@
+/* eslint-disable no-unused-vars */
 
-import React, {useState} from 'react';
+import React, {useState, useContext, useEffect, useCallback} from 'react';
 import PropTypes from 'prop-types';
-import {getPasswords, passArray} from '../utils/passArray';
+import {getPasswords} from '../utils/passArray';
+import {Context} from '../utils/context';
 import {ToastContainer, toast} from 'react-toastify';
 import mark from '../svg/mark.svg';
 import bin from '../svg/bin.svg';
@@ -9,8 +11,12 @@ import styles from '../css/sidebar.module.css';
 
 const SideBar = ({open, violet}) => {
 	// Const passwords = JSON.parse(sessionStorage.getItem('passArr'));
-	const [arr, setPass] = useState(passArray(getPasswords('passArr')));
+	const {passArray} = useContext(Context);
+	const [, updateState] = useState();
+	const forceUpdate = useCallback(() => updateState({}), []);
+	const [arr, setPass] = useState([]);
 	const array = [];
+	console.log('arrs', passArray);
 
 	// Console.log('arrSide', items);
 
@@ -26,9 +32,11 @@ const SideBar = ({open, violet}) => {
 		notifyCop();
 	};
 
-	const deletePass = index => {
-		setPass(prevState => [...prevState.filter((item, i) => i !== index)]);
-		console.log(arr);
+	const deletePass = (index, arr) => {
+		const copyArr = [...arr.filter((item, i) => i !== index)];
+		// SetPass(prevState => [...prevState.filter((item, i) => i !== index)]);
+		sessionStorage.setItem('passArr', JSON.stringify(copyArr));
+		window.location.reload();
 	};
 
 	const notifyCop = () => toast.success('copy!', {
@@ -41,12 +49,12 @@ const SideBar = ({open, violet}) => {
 		<div className={open ? styles.sidebar : `${styles.sidebar} ${styles.close}`}>
 			<div className={violet ? `${styles.side} ${styles.violet}` : styles.side }>
 				<ToastContainer />
-				{arr.map((item, i) => (
+				{passArray.map((item, i) => (
 					<div key={i} className={styles.password}>
 						<div>{item}</div>
 						<div>
 							<img src={mark} onClick={() => copy(i)} className={styles.mark} alt="" />
-							<img src={bin} onClick={() => deletePass(i)} className={styles.bin} alt="" />
+							<img src={bin} onClick={() => deletePass(i, passArray)} className={styles.bin} alt="" />
 						</div>
 					</div>
 				))}

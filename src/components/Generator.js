@@ -1,6 +1,6 @@
 
 /* eslint-disable no-mixed-spaces-and-tabs */
-import React, {useState, useEffect} from 'react';
+import React, {useState, useEffect, useCallback} from 'react';
 import PropTypes from 'prop-types';
 import {ToastContainer, toast} from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -22,7 +22,8 @@ function Generator({theme}) {
 			numbers: generateNum,
 			symbols: getenerateSymbols});
 	const messages = ['please, chose options', 'copyied!'];
-
+	const [, updateState] = useState();
+	const forceUpdate = useCallback(() => updateState({}), []);
 	useEffect(() => {
 		sessionStorage.setItem('passArr', JSON.stringify(passStorage));
 	}, [passStorage]);
@@ -81,6 +82,7 @@ function Generator({theme}) {
 		}
 
 		notifyCopy();
+		forceUpdate();
 	}
 
 	const setPassLength = ({target}) => {
